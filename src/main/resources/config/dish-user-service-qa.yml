@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: dish-user-service
+  datasource:
+    url: jdbc:postgresql://10.10.19.229:5432/dish
+    username: postgres
+    password: postgres
+    hikari:
+      schema: users
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+server:
+  servlet:
+    context-path: /dish/user-service
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://10.10.19.229:8761/eureka/
+role:
+  service:
+    baseurl: /dish/roles-service/api/v1/role/
+auth:
+  service:
+    baseurl: /dish/auth-service/api/v1/auth/
+application:
+  property: qaenvironment
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
